@@ -19,6 +19,7 @@
 	</header>
 	<!-- END HEADER -->
 	<div class="container">
+		<div id="content">
 		<!-- BEGIN INFO SECTION -->
 		<div id="infoSection">
 			<div class="gameInfo">
@@ -32,9 +33,10 @@
 				<h1>GUESSES LEFT: <span id="guessesLeft">0</span></h1>
 			</div>
 		</div>
+		<p id="start">Start typing to play!</p>
 		<!-- END INFO SECTION -->
 		<!-- BEGIN GAME DISPLAY SECTION -->
-		<div id="displaySection">
+		<div class="displaySection">
 			<div id="shark">
 				<img src="assets/images/shark.svg" alt="SHARK!">
 			</div>
@@ -42,7 +44,18 @@
 				<img src="assets/images/swimmer.svg" alt="SWIMMER!">
 			</div>
 		</div>
+		<div class="displaySection">
+			<div class="gameInfo">
+				<h1>WORD:</h1>
+				<h1 id="word" class="roundInfo">-----</h1>
+			</div>
+			<div class="gameInfo">
+				<h1>GUESSED:</h1>
+				<h1 id="lettersGuessed" class="roundInfo">-----</h1>
+			</div>
+		</div>
 		<!-- END GAME DISPLAY SECTION -->
+		</div>
 	</div>
 	<footer>
 		<div id="signature">
