@@ -32,6 +32,7 @@ document.onkeyup = function(event) {
 			if(guesses === 0) {
 				document.getElementById("swimmer").style.opacity = "0";
 				document.body.style.backgroundColor = "#F22";
+				document.getElementById("start").innerText = "Refresh the page to clean up the blood!";
 				updateBoard(thought, wins, losses, guesses, key);
 			}
 			updateBoard(thought, wins, losses, guesses, key);
