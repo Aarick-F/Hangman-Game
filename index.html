@@ -4,10 +4,55 @@
 	<title>Hangman</title>
 	<!-- RESET CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<!-- MY STYLESHEET -->
+	<!-- MY STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
+	<!-- BEGIN HEADER -->
+	<header>
+		<ul id="logo">
+			<li>~</li><li>~</li><li>~</li>
+			<li>S</li><li>W</li><li>I</li><li>M</li>
+			<li>F</li><li>A</li><li>S</li><li>T</li>
+			<li>~</li><li>~</li><li>~</li>
+		</ul>
+	</header>
+	<!-- END HEADER -->
+	<div class="container">
+		<!-- BEGIN INFO SECTION -->
+		<div id="infoSection">
+			<div class="gameInfo">
+				<h1>Oh S#@^! A shark is chasing you!</h1>
+				<h1>Luckily for you, guessing the word a shark</h1>
+				<h1>is thinking of paralyzes them! Guess the word!</h1>
+			</div>
+			<div class="gameInfo">
+				<h1>WINS: <span id="numWins">0</span></h1>
+				<h1>LOSSES: <span id="numLosses">0</span></h1>
+				<h1>GUESSES LEFT: <span id="guessesLeft">0</span></h1>
+			</div>
+		</div>
+		<!-- END INFO SECTION -->
+		<!-- BEGIN GAME DISPLAY SECTION -->
+		<div id="displaySection">
+			<div id="shark" class="sprite">
+				<img src="assets/images/shark.svg" alt="SHARK!">
+			</div>
+			<div id="swimmer" class="sprite">
+				<img src="assets/images/swimmer.svg" alt="SWIMMER!">
+			</div>
+		</div>
+		<!-- END GAME DISPLAY SECTION -->
+	</div>
+	<footer>
+		<div id="signature">
+			<p>Coded & Designed by Aarick-F</p>
+		</div>
+		<div id="credits">
+			<p>Shark by Nook Fulloption from the Noun Project</p>
+			<p>Swiming by Dinosoft Labs from the Noun Project</p>
+		</div>
+	</footer>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>
