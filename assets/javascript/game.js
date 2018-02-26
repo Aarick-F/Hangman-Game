@@ -36,14 +36,13 @@ function init() {
 	document.getElementById("guessesLeft").innerText = guesses;
 	document.getElementById("word").innerText = dashes.join("");
 	// For cheaters :]
-	console.log(picked);
+	console.log(picked + " --Shame on you. Didn't you know shark telepathy is super illegal?");
 	document.onkeyup = function(event) {
 		if(event.keyCode >= 65 && event.keyCode <= 90) {
 			let key = event.key.toUpperCase();
 			for(let i = 0; i < wordArray.length; i++) {
 				if(wordArray[i] === key && game === true) {
 					dashes[i] = key;
-					console.log(wordArray);
 					document.getElementById("word").innerText = dashes.join("");
 					if(dashes.indexOf("-") === -1) {
 						// WIN CONDITION!
