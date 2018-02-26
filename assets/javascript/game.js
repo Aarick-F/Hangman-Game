@@ -5,7 +5,8 @@ const words = ["SNACK", "DINNER", "LUNCH", "MORSEL", "CHOMP",
 							"SALTY", "GNAW", "GNASH", "THRASH", "HUNT"];
 
 let wins = 0,
-		losses = 0;
+		losses = 0,
+		game = true;
 
 init();
 
@@ -14,7 +15,8 @@ function init() {
 		guesses = 9,
 		dashes = [],
 		wordArray = [],
-		guessedLetters = "";
+		guessedLetters = ""
+		game = true;
 	document.getElementById("displayBoard").innerText = "Oh S#@^! A shark is chasing you! Luckily for you, guessing the word a shark is thinking of paralyzes them! Guess the word!";
 	document.body.style.backgroundColor = "#FFF";
 	document.getElementById("lettersGuessed").innerText = " ";
@@ -35,20 +37,19 @@ function init() {
 
 	let foundLetters = [];
 	let foundLetterCheck = [];
-
 	document.onkeyup = function(event) {
 		let key = event.key.toUpperCase();
 		for(let i = 0; i < wordArray.length; i++) {
-			if(wordArray[i] === key && foundLetterCheck.indexOf(key) === -1) {
-				foundLetterCheck.push(key);	
-				foundLetters.push(i);
+			if(wordArray[i] === key && game === true) {
+				// foundLetters.push(i);
 				dashes[i] = key;
 				console.log(wordArray);
 				console.log(foundLetters);
 				document.getElementById("word").innerText = dashes.join("");
-				if(foundLetters.length === wordArray.length) {
+				if(dashes.indexOf("-") === -1) {
 					// WIN CONDITION!
 					wins++;
+					game = false;
 					document.getElementById("displayBoard").innerText = "Amazing! You stunned the shark and escaped! Click here to play again!";
 					document.getElementById("displayBoard").style.cursor = "pointer";
 					document.getElementById("numWins").innerText = wins;
@@ -59,7 +60,7 @@ function init() {
 				}
 			}
 		}
-		if(wordArray.indexOf(key) === -1) {
+		if(wordArray.indexOf(key) === -1 && game === true) {
 			document.getElementById("lettersGuessed").innerText += key
 			if(guesses > 0) {
 				guesses--;
@@ -73,6 +74,7 @@ function init() {
 				if(guesses === 0) {
 					// LOSE CONDITION!
 					losses++;
+					game = false;
 					document.getElementById("displayBoard").innerText = "Oh no! Looks like you got got. Click here to clean up the blood and try again.";
 					document.getElementById("displayBoard").style.cursor = "pointer";
 					document.getElementById("swimmer").style.opacity = "0";
@@ -86,5 +88,6 @@ function init() {
 			}
 		}
 		console.log(foundLetters);
+		console.log(game);
 	}
 }
