@@ -34,11 +34,13 @@ function init() {
 	console.log(wordArray);
 
 	let foundLetters = [];
+	let foundLetterCheck = [];
 
 	document.onkeyup = function(event) {
 		let key = event.key.toUpperCase();
 		for(let i = 0; i < wordArray.length; i++) {
-			if(wordArray[i] === key) {
+			if(wordArray[i] === key && foundLetterCheck.indexOf(key) === -1) {
+				foundLetterCheck.push(key);	
 				foundLetters.push(i);
 				dashes[i] = key;
 				console.log(wordArray);
@@ -76,6 +78,7 @@ function init() {
 					document.getElementById("swimmer").style.opacity = "0";
 					document.getElementById("shark").style.marginLeft = "80px";
 					document.body.style.backgroundColor = "#F22";
+					document.getElementById("numLosses").innerText = losses;
 					document.getElementById("displayBoard").addEventListener("click", function() {
 						init();
 					});
