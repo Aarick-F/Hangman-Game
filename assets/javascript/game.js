@@ -5,24 +5,27 @@ const words = ["SNACK", "DINNER", "LUNCH", "MORSEL", "CHOMP",
 							"SALTY", "GNAW", "GNASH", "THRASH", "HUNT"];
 
 let wins = 0,
-		losses = 0,
-		game = true;
+		losses = 0;
 
 init();
 
 function init() {
 	let picked = "",
-		guesses = 9,
-		dashes = [],
-		wordArray = [],
-		guessedLetters = ""
-		game = true;
+			guesses = 9,
+			dashes = [],
+			wordArray = [],
+			guessedLetters = ""
+			game = true;
+
 	document.getElementById("displayBoard").innerText = "Oh S#@^! A shark is chasing you! Luckily for you, guessing the word a shark is thinking of paralyzes them! Guess the word!";
+	document.getElementById("displayBoard").style.animation = "none";
 	document.body.style.backgroundColor = "#FFF";
 	document.getElementById("lettersGuessed").innerText = " ";
 	document.getElementById("sprites").style.justifyContent = "space-between";
 	document.getElementById("swimmer").style.opacity = "1";
+	document.getElementById("shark").style.animation = "wave 1s linear infinite";
 	document.getElementById("shark").style.marginLeft = "0px";
+	document.getElementById("shark").style.transform = "scaleY(1)";
 	picked = words[Math.floor(Math.random() * words.length)];
 
 	for(let i = 0; i < picked.length; i++) {
@@ -32,31 +35,18 @@ function init() {
 	guesses = 9;
 	document.getElementById("guessesLeft").innerText = guesses;
 	document.getElementById("word").innerText = dashes.join("");
+	// For cheaters :]
 	console.log(picked);
-	console.log(wordArray);
-
-	let foundLetters = [];
-	let foundLetterCheck = [];
 	document.onkeyup = function(event) {
 		let key = event.key.toUpperCase();
 		for(let i = 0; i < wordArray.length; i++) {
 			if(wordArray[i] === key && game === true) {
-				// foundLetters.push(i);
 				dashes[i] = key;
 				console.log(wordArray);
-				console.log(foundLetters);
 				document.getElementById("word").innerText = dashes.join("");
 				if(dashes.indexOf("-") === -1) {
 					// WIN CONDITION!
-					wins++;
-					game = false;
-					document.getElementById("displayBoard").innerText = "Amazing! You stunned the shark and escaped! Click here to play again!";
-					document.getElementById("displayBoard").style.cursor = "pointer";
-					document.getElementById("numWins").innerText = wins;
-					document.body.style.backgroundColor = "#2F2";
-					document.getElementById("displayBoard").addEventListener("click", function() {
-						init();
-					});
+					win();
 				}
 			}
 		}
@@ -73,21 +63,40 @@ function init() {
 				}
 				if(guesses === 0) {
 					// LOSE CONDITION!
-					losses++;
-					game = false;
-					document.getElementById("displayBoard").innerText = "Oh no! Looks like you got got. Click here to clean up the blood and try again.";
-					document.getElementById("displayBoard").style.cursor = "pointer";
-					document.getElementById("swimmer").style.opacity = "0";
-					document.getElementById("shark").style.marginLeft = "80px";
-					document.body.style.backgroundColor = "#F22";
-					document.getElementById("numLosses").innerText = losses;
-					document.getElementById("displayBoard").addEventListener("click", function() {
-						init();
-					});
+					lose();
 				}
 			}
 		}
-		console.log(foundLetters);
-		console.log(game);
 	}
+}
+
+function win() {
+	wins++;
+	game = false;
+	document.getElementById("displayBoard").innerText = "Amazing! You stunned the shark and escaped! Click here to play again!";
+	document.getElementById("displayBoard").style.animation = "wave 1s linear infinite";
+	document.getElementById("shark").style.animation = "none";
+	document.getElementById("shark").style.transform = "scaleY(-1)";
+	document.getElementById("displayBoard").style.cursor = "pointer";
+	document.getElementById("numWins").innerText = wins;
+	document.body.style.backgroundColor = "#2F2";
+	document.getElementById("displayBoard").addEventListener("click", function() {
+		init();
+	});
+}
+
+function lose() {
+	losses++;
+	game = false;
+	document.getElementById("displayBoard").innerText = "Oh no! Looks like you got got. Click here to clean up the blood and try again.";
+	document.getElementById("displayBoard").style.cursor = "pointer";
+	document.getElementById("displayBoard").style.animation = "wave 1s linear infinite";
+	document.getElementById("swimmer").style.opacity = "0";
+	document.getElementById("shark").style.marginLeft = "80px";
+	document.getElementById("shark").style.animation = "wave 0.1s linear infinite";
+	document.body.style.backgroundColor = "#F22";
+	document.getElementById("numLosses").innerText = losses;
+	document.getElementById("displayBoard").addEventListener("click", function() {
+		init();
+	});
 }
