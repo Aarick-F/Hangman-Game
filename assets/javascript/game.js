@@ -38,32 +38,34 @@ function init() {
 	// For cheaters :]
 	console.log(picked);
 	document.onkeyup = function(event) {
-		let key = event.key.toUpperCase();
-		for(let i = 0; i < wordArray.length; i++) {
-			if(wordArray[i] === key && game === true) {
-				dashes[i] = key;
-				console.log(wordArray);
-				document.getElementById("word").innerText = dashes.join("");
-				if(dashes.indexOf("-") === -1) {
-					// WIN CONDITION!
-					win();
+		if(event.keyCode >= 65 && event.keyCode <= 90) {
+			let key = event.key.toUpperCase();
+			for(let i = 0; i < wordArray.length; i++) {
+				if(wordArray[i] === key && game === true) {
+					dashes[i] = key;
+					console.log(wordArray);
+					document.getElementById("word").innerText = dashes.join("");
+					if(dashes.indexOf("-") === -1) {
+						// WIN CONDITION!
+						win();
+					}
 				}
 			}
-		}
-		if(wordArray.indexOf(key) === -1 && game === true) {
-			document.getElementById("lettersGuessed").innerText += key
-			if(guesses > 0) {
-				guesses--;
-					document.getElementById("guessesLeft").innerText = guesses;
-				if(guesses <= 6) {
-					document.getElementById("sprites").style.justifyContent = "space-around";
-				}
-				if(guesses <= 3) {
-					document.getElementById("sprites").style.justifyContent = "center";
-				}
-				if(guesses === 0) {
-					// LOSE CONDITION!
-					lose();
+			if(wordArray.indexOf(key) === -1 && game === true) {
+				document.getElementById("lettersGuessed").innerText += key
+				if(guesses > 0) {
+					guesses--;
+						document.getElementById("guessesLeft").innerText = guesses;
+					if(guesses <= 6) {
+						document.getElementById("sprites").style.justifyContent = "space-around";
+					}
+					if(guesses <= 3) {
+						document.getElementById("sprites").style.justifyContent = "center";
+					}
+					if(guesses === 0) {
+						// LOSE CONDITION!
+						lose();
+					}
 				}
 			}
 		}
