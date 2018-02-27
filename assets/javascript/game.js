@@ -17,12 +17,13 @@ function init() {
 			guessedLetters = ""
 			game = true;
 
+	document.body.style.backgroundColor = "#FFF";
 	document.getElementById("displayBoard").innerText = "Oh S#@^! A shark is chasing you! Luckily for you, guessing the word a shark is thinking of paralyzes them! Guess the word!";
 	document.getElementById("displayBoard").style.animation = "none";
-	document.body.style.backgroundColor = "#FFF";
 	document.getElementById("lettersGuessed").innerText = " ";
 	document.getElementById("sprites").style.justifyContent = "space-between";
 	document.getElementById("swimmer").style.opacity = "1";
+	document.getElementById("swimmer").style.animation = "wave 1.5s linear infinite";
 	document.getElementById("shark").style.animation = "wave 1s linear infinite";
 	document.getElementById("shark").style.marginLeft = "0px";
 	document.getElementById("shark").style.transform = "scaleY(1)";
@@ -60,6 +61,7 @@ function init() {
 					}
 					if(guesses <= 3) {
 						document.getElementById("sprites").style.justifyContent = "center";
+						document.getElementById("swimmer").style.animation = "wave 0.2s linear infinite";
 					}
 					if(guesses === 0) {
 						// LOSE CONDITION!
