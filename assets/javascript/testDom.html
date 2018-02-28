@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+</head>
+<body>
+	<p>Wins:</p>
+	<div id="wins">0</div>
+	<p>Guesses:</p>
+	<div id="guesses">9</div>
+	<p>Losses:</p>
+	<div id="losses">0</div>
+
+	<script type="text/javascript">
+		var letters = ['a', 'b', 'c'];
+var wins = 0;
+var losses = 0;
+var guessesLeft = 9;
+
+var compChoice = letters[Math.floor(Math.random() * letters.length)];
+
+console.log(compChoice);
+
+document.onkeyup = function(event) {
+  var playerChoice = event.key;
+  if(playerChoice === compChoice) {
+    wins++;
+    compChoice = letters[Math.floor(Math.random() * letters.length)];
+    guessesLeft = 9;
+    document.getElementById("wins").innerText = wins;
+    document.getElementById("guesses").innerText = guessesLeft;
+  } else {
+    if(guessesLeft > 0) {
+      guessesLeft--;
+      document.getElementById("guesses").innerText = guessesLeft;
+    }
+    if(guessesLeft === 0) {
+      losses++;
+      guessesLeft = 9;
+      compChoice = letters[Math.floor(Math.random() * letters.length)];
+      document.getElementById("losses").innerText = losses;
+      document.getElementById("guesses").innerText = guessesLeft;
+    }
+  }
+  console.log(compChoice);
+}
+
+	</script>
+</body>
+</html>

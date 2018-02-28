@@ -57,6 +57,10 @@ a, a:visited {
 	margin-top: 20px;
 }
 
+#displayBoard {
+	cursor: pointer;
+}
+
 #signature {
 	font-family: 'VT323', monospace;
 	border-left: 8px solid #000;
